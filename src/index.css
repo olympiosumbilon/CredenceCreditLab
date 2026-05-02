@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../credence-landing-tailwind.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
