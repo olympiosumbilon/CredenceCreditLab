@@ -767,77 +767,31 @@ export default function CredenceLanding() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-14 grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-3">
             {successStories.map((story, index) => (
               <article
                 key={story.title}
-                className="credence-story-card group"
+                className={`group relative overflow-hidden rounded-[24px] border border-[#c9a84c]/20 bg-[#0b1711] shadow-2xl ${
+                  index === 0
+                    ? "md:col-span-1 md:row-span-1 aspect-video"
+                    : index === 1
+                    ? "md:col-span-1 md:row-span-1 aspect-video"
+                    : index === 2
+                    ? "md:col-span-2 md:row-span-1 aspect-video"
+                    : index === 3
+                    ? "md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2 aspect-[9/16] md:aspect-auto"
+                    : "aspect-video"
+                }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div
-                  className={`credence-story-frame ${
-                    story.accent === "gold" ? "credence-story-frame-gold" : "credence-story-frame-green"
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="font-['DM_Mono'] text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                        {story.eyebrow}
-                      </div>
-                      <div className="mt-3 text-sm text-white/45">{story.sourceLabel}</div>
-                      <h3 className="mt-4 max-w-[18ch] text-[30px] font-semibold leading-[1.12] tracking-[-0.03em] text-white">
-                        {story.title}
-                      </h3>
-                      <div className="mt-3 text-sm text-[#8aab97]">{story.role}</div>
-                    </div>
-                    <a
-                      href={story.videoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#ff2d20] shadow-[0_14px_30px_rgba(255,45,32,0.25)] transition duration-300 group-hover:scale-105 group-hover:shadow-[0_18px_36px_rgba(255,45,32,0.35)]"
-                      aria-label={`Watch ${story.title} on YouTube`}
-                    >
-                      <PlayIcon />
-                    </a>
-                  </div>
-
-                  <a
-                    href={story.videoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-8 block overflow-hidden rounded-[24px] border border-white/6 bg-[#0b1711]/90"
-                  >
-                    <div
-                      className="credence-story-video h-[220px] w-full"
-                      style={{
-                        backgroundImage: `linear-gradient(135deg, rgba(14,31,21,0.76), rgba(18,43,29,0.48)), url(https://img.youtube.com/vi/${story.videoId}/hqdefault.jpg)`,
-                      }}
-                    >
-                      <div className="credence-story-video-ui" />
-                      <div className="credence-story-play">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ff2d20] shadow-[0_18px_40px_rgba(255,45,32,0.28)]">
-                          <PlayIcon />
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                  <p className="mt-7 max-w-[44ch] text-[15px] leading-8 text-white/60">
-                    {story.quote}
-                  </p>
-
-                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#c9a84c]/12 bg-[#c9a84c]/6 px-5 py-4 text-sm font-medium text-[#f0dfa8]">
-                    <span>{story.result}</span>
-                    <a
-                      href={story.videoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-[#f0dfa8] transition hover:text-white"
-                    >
-                      Watch sample
-                      <ExternalLinkIcon />
-                    </a>
-                  </div>
+                <div className="absolute inset-0">
+                  <iframe
+                    className="h-full w-full border-0"
+                    src={`https://www.youtube.com/embed/${story.videoId}?rel=0&modestbranding=1`}
+                    title={story.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
               </article>
             ))}
