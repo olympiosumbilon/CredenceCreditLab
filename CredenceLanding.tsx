@@ -132,7 +132,7 @@ export default function CredenceLanding() {
             href="#apply"
             className="rounded-md bg-[#c9a84c] px-5 py-3 text-sm font-bold tracking-[0.03em] text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78]"
           >
-            Book Strategy Call
+            Reserve My Spot Now 
           </a>
         </div>
       </nav>
@@ -169,7 +169,7 @@ export default function CredenceLanding() {
                 className="inline-flex items-center gap-2 text-sm font-medium text-[#8aab97] transition hover:text-white"
               >
                 See How It Works
-                <span aria-hidden="true">v</span>
+                {/* <span aria-hidden="true">v</span> */}
               </a>
             </div>
 
