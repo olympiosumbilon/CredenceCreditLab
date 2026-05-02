@@ -2,9 +2,9 @@ import type {
   BenefitItem,
   FaqItem,
   FooterColumn,
-  IconTextItem,
   NavLink,
   PricingTier,
+  ProblemItem,
   ServiceItem,
   StatItem,
   TrustItem,
@@ -34,21 +34,29 @@ export const marqueeItems: string[] = [
   "Brand Development",
 ];
 
-export const painPoints: IconTextItem[] = [
+export const painPoints: ProblemItem[] = [
   {
+    number: "01 / 04",
     icon: "AI",
+    title: "Buried in daily operations",
     text: "You're juggling disputes, clients, marketing, and admin simultaneously every single day.",
   },
   {
+    number: "02 / 04",
     icon: "$",
+    title: "Hiring too early is expensive",
     text: "Hiring a full team is expensive, slow, and risky when you're still scaling revenue.",
   },
   {
+    number: "03 / 04",
     icon: "!",
+    title: "Growth creates more chaos",
     text: "Scaling feels impossible without burning out or dropping the ball on existing clients.",
   },
   {
+    number: "04 / 04",
     icon: "%",
+    title: "Poor delivery hurts referrals",
     text: "Inconsistent dispute quality leads to poor results, chargebacks, and lost referrals.",
   },
 ];

@@ -8,8 +8,10 @@ export interface StatItem {
   label: string;
 }
 
-export interface IconTextItem {
+export interface ProblemItem {
+  number: string;
   icon: string;
+  title: string;
   text: string;
 }
 

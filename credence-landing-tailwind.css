@@ -21,11 +21,359 @@
     }
   }
 
+  @keyframes credence-grid-pan {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(60px, 30px, 0);
+    }
+  }
+
+  @keyframes credence-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate3d(0, -24px, 0) scale(1.06);
+    }
+  }
+
+  @keyframes credence-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+
+    50% {
+      transform: translate3d(-22px, 16px, 0) rotate(8deg);
+    }
+  }
+
+  @keyframes credence-pulse-ring {
+    0% {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+
+    25% {
+      opacity: 0.28;
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(1.25);
+    }
+  }
+
+  @keyframes credence-beam-sway {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-18deg);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translate3d(18px, -10px, 0) rotate(-10deg);
+      opacity: 0.55;
+    }
+  }
+
+  @keyframes credence-panel-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+      transform: translate3d(0, -14px, 0);
+    }
+  }
+
+  @keyframes credence-problem-card-in {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes credence-problem-sheen {
+    0% {
+      transform: translateX(-130%) skewX(-18deg);
+    }
+
+    100% {
+      transform: translateX(240%) skewX(-18deg);
+    }
+  }
+
+  @keyframes credence-benefit-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .credence-marquee-track {
     animation: credence-marquee 28s linear infinite;
   }
 
   .animate-credence-fade-up {
     animation: credence-fade-up 0.7s ease both;
+  }
+
+  .credence-hero-grid {
+    animation: credence-grid-pan 24s linear infinite;
+    opacity: 0.8;
+  }
+
+  .credence-hero-spotlight {
+    background:
+      radial-gradient(
+        circle at var(--pointer-x, 72%) var(--pointer-y, 38%),
+        rgba(224, 191, 120, 0.18) 0,
+        rgba(224, 191, 120, 0.08) 10%,
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at calc(var(--pointer-x, 72%) - 18%) calc(var(--pointer-y, 38%) + 14%),
+        rgba(61, 122, 82, 0.12) 0,
+        transparent 32%
+      );
+    transition: background-position 160ms ease;
+  }
+
+  .credence-hero-orb {
+    pointer-events: none;
+    border-radius: 9999px;
+    filter: blur(14px);
+    opacity: 0.8;
+  }
+
+  .credence-hero-orb-one {
+    right: 12%;
+    top: 18%;
+    height: 220px;
+    width: 220px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.18) 0, transparent 72%);
+    animation: credence-float 9s ease-in-out infinite;
+  }
+
+  .credence-hero-orb-two {
+    right: 28%;
+    bottom: 12%;
+    height: 300px;
+    width: 300px;
+    background: radial-gradient(circle, rgba(45, 92, 62, 0.34) 0, transparent 74%);
+    animation: credence-drift 14s ease-in-out infinite;
+  }
+
+  .credence-hero-orb-three {
+    left: 8%;
+    bottom: 8%;
+    height: 180px;
+    width: 180px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0, transparent 70%);
+    animation: credence-float 12s ease-in-out infinite reverse;
+  }
+
+  .credence-hero-ring {
+    pointer-events: none;
+    right: 18%;
+    top: 24%;
+    height: 340px;
+    width: 340px;
+    border: 1px solid rgba(201, 168, 76, 0.16);
+    border-radius: 9999px;
+    animation: credence-pulse-ring 7s ease-out infinite;
+  }
+
+  .credence-hero-ring-delayed {
+    animation-delay: 3.5s;
+  }
+
+  .credence-hero-beam {
+    pointer-events: none;
+    right: 12%;
+    top: 16%;
+    height: 420px;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(201, 168, 76, 0),
+      rgba(201, 168, 76, 0.38),
+      rgba(201, 168, 76, 0)
+    );
+    transform-origin: top center;
+    animation: credence-beam-sway 11s ease-in-out infinite;
+    box-shadow: 0 0 24px rgba(201, 168, 76, 0.18);
+  }
+
+  .credence-hero-beam-secondary {
+    right: 25%;
+    top: 28%;
+    height: 280px;
+    animation-delay: 1.8s;
+    animation-duration: 13s;
+    opacity: 0.22;
+  }
+
+  .credence-hero-panel {
+    border: 1px solid rgba(201, 168, 76, 0.16);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
+      rgba(10, 28, 19, 0.35);
+    backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 24px 60px rgba(0, 0, 0, 0.18);
+    animation: credence-panel-float 8s ease-in-out infinite;
+  }
+
+  .credence-hero-panel::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201, 168, 76, 0.5), rgba(201, 168, 76, 0));
+  }
+
+  .credence-hero-panel::after {
+    content: "";
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 28px;
+    height: 64px;
+    border-radius: 16px;
+    background:
+      linear-gradient(90deg, rgba(201, 168, 76, 0.14) 20%, transparent 20% 28%, rgba(201, 168, 76, 0.24) 28% 40%, transparent 40% 48%, rgba(201, 168, 76, 0.34) 48% 62%, transparent 62% 70%, rgba(201, 168, 76, 0.5) 70% 88%, transparent 88%);
+    mask: linear-gradient(to top, black 65%, transparent);
+  }
+
+  .credence-hero-panel-secondary {
+    animation-delay: 1.6s;
+    animation-duration: 10s;
+  }
+
+  .credence-hero-panel-secondary::after {
+    height: 80px;
+    background:
+      linear-gradient(90deg, rgba(45, 92, 62, 0.2) 16%, transparent 16% 26%, rgba(201, 168, 76, 0.18) 26% 38%, transparent 38% 48%, rgba(201, 168, 76, 0.32) 48% 62%, transparent 62% 72%, rgba(201, 168, 76, 0.46) 72% 90%, transparent 90%);
+  }
+
+  .credence-problem-card {
+    position: relative;
+    overflow: hidden;
+    animation: credence-problem-card-in 0.7s ease both;
+    transition:
+      transform 220ms ease,
+      background-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .credence-problem-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top right, rgba(201, 168, 76, 0.12), transparent 36%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 42%);
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .credence-problem-card::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -35%;
+    width: 38%;
+    height: 140%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0)
+    );
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .credence-problem-card:hover {
+    transform: translateY(-4px);
+    background-color: rgba(18, 39, 27, 0.95);
+    box-shadow: inset 0 0 0 1px rgba(201, 168, 76, 0.08);
+  }
+
+  .credence-problem-card:hover::before {
+    opacity: 1;
+  }
+
+  .credence-problem-card:hover::after {
+    opacity: 1;
+    animation: credence-problem-sheen 900ms ease;
+  }
+
+  .credence-problem-callout::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.06),
+      transparent
+    );
+    transform: translateX(-120%);
+    animation: credence-problem-sheen 6s ease-in-out infinite;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .credence-benefit-card {
+    position: relative;
+    overflow: hidden;
+    animation: credence-benefit-in 0.65s ease both;
+    transition:
+      transform 220ms ease,
+      background-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .credence-benefit-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top right, rgba(201, 168, 76, 0.14), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 45%);
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .credence-benefit-card:hover {
+    transform: translateY(-4px);
+    background-color: rgba(18, 42, 29, 0.96);
+    box-shadow: inset 0 0 0 1px rgba(201, 168, 76, 0.07);
+  }
+
+  .credence-benefit-card:hover::before {
+    opacity: 1;
   }
 }

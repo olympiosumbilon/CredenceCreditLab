@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 
 import {
   authorityStats,
@@ -31,6 +31,10 @@ interface PrimaryButtonProps {
   href?: string;
   children: ReactNode;
   centered?: boolean;
+}
+
+interface BenefitIconProps {
+  icon: string;
 }
 
 function ArrowIcon({ className = "h-4 w-4" }: IconProps) {
@@ -107,7 +111,168 @@ function PrimaryButton({ href = "#apply", children, centered = false }: PrimaryB
   );
 }
 
+function BenefitIcon({ icon }: BenefitIconProps) {
+  const iconClassName = "h-6 w-6 text-[#c9a84c]";
+
+  switch (icon) {
+    case "UP":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M4 16.5L9 11.5L13 15.5L20 8.5"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15.5 8.5H20V13"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "LAW":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M12 5V19"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M7 8H17"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M5 8L3 12H7L5 8Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M19 8L17 12H21L19 8Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 19H15"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "TIME":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M12 8V12L15 14"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "FOCUS":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M12 4V6.5M12 17.5V20M4 12H6.5M17.5 12H20"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M6.8 6.8L8.5 8.5M15.5 15.5L17.2 17.2M17.2 6.8L15.5 8.5M8.5 15.5L6.8 17.2"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "SYNC":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M7 7H17V17"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M17 7L7 17"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M5 12C5 8.13401 8.13401 5 12 5"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M19 12C19 15.866 15.866 19 12 19"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "COST":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M12 4V20"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M15.5 7.5C15.5 6.11929 13.933 5 12 5C10.067 5 8.5 6.11929 8.5 7.5C8.5 8.88071 10.067 10 12 10C13.933 10 15.5 11.1193 15.5 12.5C15.5 13.8807 13.933 15 12 15C10.067 15 8.5 13.8807 8.5 12.5"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    default:
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+      );
+  }
+}
+
 export default function CredenceLanding() {
+  const [heroPointer, setHeroPointer] = useState({ x: 72, y: 38 });
+
+  const handleHeroPointerMove = (event: MouseEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    setHeroPointer({ x, y });
+  };
+
+  const heroStyle = {
+    "--pointer-x": `${heroPointer.x}%`,
+    "--pointer-y": `${heroPointer.y}%`,
+  } as CSSProperties;
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#0f2419] font-['DM_Sans'] text-white">
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#c9a84c]/20 bg-[#0f2419]/85 px-6 py-4 backdrop-blur md:px-10 xl:px-16">
@@ -137,10 +302,27 @@ export default function CredenceLanding() {
         </div>
       </nav>
 
-      <section className="relative flex min-h-screen items-center overflow-hidden px-6 pb-16 pt-28 md:px-10 xl:px-16">
+      <section
+        className="relative flex min-h-screen items-center overflow-hidden px-6 pb-16 pt-28 md:px-10 xl:px-16"
+        onMouseMove={handleHeroPointerMove}
+        onMouseLeave={() => setHeroPointer({ x: 72, y: 38 })}
+        style={heroStyle}
+      >
         <div className="absolute inset-0 bg-[#0f2419]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_70%_50%,rgba(45,92,62,0.35)_0%,transparent_70%),radial-gradient(ellipse_40%_40%_at_20%_80%,rgba(201,168,76,0.08)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,76,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="credence-hero-grid absolute inset-0 bg-[linear-gradient(rgba(201,168,76,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="credence-hero-spotlight absolute inset-0" />
+        <div className="credence-hero-orb credence-hero-orb-one absolute" />
+        <div className="credence-hero-orb credence-hero-orb-two absolute" />
+        <div className="credence-hero-orb credence-hero-orb-three absolute" />
+        <div className="credence-hero-ring absolute" />
+        <div className="credence-hero-ring credence-hero-ring-delayed absolute" />
+        <div className="credence-hero-beam absolute" />
+        <div className="credence-hero-beam credence-hero-beam-secondary absolute" />
+        <div className="pointer-events-none absolute right-[10%] top-1/2 hidden h-[360px] w-[360px] -translate-y-1/2 lg:block">
+          <div className="credence-hero-panel absolute right-0 top-0 h-40 w-56 rounded-[28px]" />
+          <div className="credence-hero-panel credence-hero-panel-secondary absolute bottom-0 left-0 h-48 w-64 rounded-[28px]" />
+        </div>
 
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl animate-credence-fade-up">
@@ -206,9 +388,9 @@ export default function CredenceLanding() {
 
       <section className="border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-20 md:px-10 xl:px-16 xl:py-24">
         <div className="mx-auto max-w-7xl">
-          <SectionLabel>The Problem</SectionLabel>
-          <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-16">
             <div>
+              <SectionLabel>The Problem</SectionLabel>
               <h2 className="font-['Playfair_Display'] text-4xl font-black leading-tight tracking-[-0.03em] md:text-5xl">
                 Running a credit repair business should not feel like doing everything alone.
               </h2>
@@ -216,27 +398,52 @@ export default function CredenceLanding() {
                 Most credit repair owners are buried in operations - processing disputes, chasing
                 clients, handling admin - with no time left to actually grow their business.
               </p>
-              <p className="mt-4 text-[17px] leading-8 text-white/60">Sound familiar?</p>
             </div>
 
-            <div>
-              <ul className="flex flex-col gap-4">
-                {painPoints.map((item) => (
-                  <li
-                    key={item.text}
-                    className="flex items-start gap-4 rounded-xl border border-white/6 bg-white/[0.02] px-5 py-5 text-[15px] leading-7 text-white/75 transition hover:border-[#c9a84c]/30 hover:bg-[#c9a84c]/5"
-                  >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#c9a84c]/12 text-[11px] font-bold text-[#c9a84c]">
-                      {item.icon}
-                    </div>
-                    <span>{item.text}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="lg:pt-20">
+              <p className="max-w-xl text-xl leading-8 text-white/88">
+                The bottleneck is not effort. It's trying to scale a serious service business
+                without operational infrastructure behind it.
+              </p>
+              <p className="mt-4 max-w-xl border-l border-[#c9a84c]/30 pl-5 text-sm leading-7 text-[#8aab97]">
+                These friction points quietly drain time, delivery quality, and revenue momentum
+                before most owners even realize what the real problem is.
+              </p>
+            </div>
+          </div>
 
-              <div className="mt-8 rounded-r-xl rounded-l-none border-l-[3px] border-[#c9a84c] bg-[#c9a84c]/6 px-7 py-6 text-base italic leading-7 text-[#f0dfa8]">
+          <div className="mt-14 overflow-hidden rounded-[28px] border border-[#c9a84c]/16 bg-[#102417]/80 shadow-[0_30px_80px_rgba(0,0,0,0.22)]">
+            <div className="grid gap-px bg-[#c9a84c]/14 md:grid-cols-2">
+              {painPoints.map((item, index) => (
+                <article
+                  key={item.title}
+                  className="credence-problem-card group bg-[#0d2016] px-8 py-8 md:px-9 md:py-10"
+                  style={{ animationDelay: `${index * 120}ms` }}
+                >
+                  <div className="mb-6 flex items-center justify-between gap-4">
+                    <span className="font-['DM_Mono'] text-[11px] uppercase tracking-[0.24em] text-[#71917d]">
+                      {item.number}
+                    </span>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#c9a84c]/12 bg-[#c9a84c]/10 text-[11px] font-bold uppercase tracking-[0.16em] text-[#c9a84c] transition duration-300 group-hover:scale-110 group-hover:border-[#c9a84c]/35 group-hover:bg-[#c9a84c]/18">
+                      {item.icon}
+                    </span>
+                  </div>
+
+                  <h3 className="max-w-[16ch] text-[28px] font-semibold leading-[1.15] tracking-[-0.03em] text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-5 max-w-[34ch] text-lg leading-8 text-white/76">{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 overflow-hidden rounded-[24px] border border-[#c9a84c]/18 bg-[linear-gradient(90deg,rgba(201,168,76,0.12),rgba(201,168,76,0.03))]">
+            <div className="credence-problem-callout relative px-8 py-7 md:px-10">
+              <div className="absolute left-0 top-0 h-full w-[3px] bg-[#c9a84c]" />
+              <p className="max-w-4xl text-[22px] italic leading-9 text-[#f0dfa8]">
                 And the worst part? The harder you work, the less your business actually grows.
-              </div>
+              </p>
             </div>
           </div>
         </div>
@@ -344,17 +551,22 @@ export default function CredenceLanding() {
             </p>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-2xl bg-[#c9a84c]/20 md:grid-cols-2 xl:grid-cols-3">
-            {benefits.map((benefit) => (
+          <div className="grid gap-px overflow-hidden rounded-[28px] border border-[#c9a84c]/14 bg-[#c9a84c]/14 md:grid-cols-2 xl:grid-cols-3">
+            {benefits.map((benefit, index) => (
               <article
                 key={benefit.title}
-                className="bg-[#10271b] px-9 py-10 transition hover:bg-[#c9a84c]/5"
+                className="credence-benefit-card group bg-[#10271b] px-9 py-10"
+                style={{ animationDelay: `${index * 90}ms` }}
               >
-                <div className="mb-5 flex h-[52px] w-[52px] items-center justify-center rounded-xl bg-[#c9a84c]/12 text-[11px] font-bold uppercase tracking-[0.15em] text-[#c9a84c]">
-                  {benefit.icon}
+                <div className="mb-6 flex h-[56px] w-[56px] items-center justify-center rounded-2xl border border-[#c9a84c]/14 bg-[linear-gradient(180deg,rgba(201,168,76,0.16),rgba(201,168,76,0.08))] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 group-hover:-translate-y-1 group-hover:border-[#c9a84c]/30 group-hover:bg-[linear-gradient(180deg,rgba(201,168,76,0.22),rgba(201,168,76,0.10))]">
+                  <BenefitIcon icon={benefit.icon} />
                 </div>
-                <h3 className="text-lg font-semibold leading-7">{benefit.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/50">{benefit.description}</p>
+                <h3 className="max-w-[18ch] text-[30px] font-semibold leading-[1.18] tracking-[-0.03em] text-white">
+                  {benefit.title}
+                </h3>
+                <p className="mt-4 max-w-[30ch] text-[15px] leading-8 text-white/52">
+                  {benefit.description}
+                </p>
               </article>
             ))}
           </div>
