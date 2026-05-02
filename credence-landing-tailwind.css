@@ -127,6 +127,64 @@
     }
   }
 
+  @keyframes credence-story-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes credence-dust-float {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 12px, 0) scale(0.9);
+    }
+
+    15% {
+      opacity: 0.45;
+    }
+
+    50% {
+      opacity: 0.9;
+      transform: translate3d(18px, -18px, 0) scale(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate3d(34px, -46px, 0) scale(1.12);
+    }
+  }
+
+  @keyframes credence-stat-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes credence-stat-glow {
+    0%,
+    100% {
+      text-shadow: 0 0 0 rgba(201, 168, 76, 0);
+      transform: translateY(0);
+    }
+
+    50% {
+      text-shadow: 0 0 22px rgba(201, 168, 76, 0.16);
+      transform: translateY(-2px);
+    }
+  }
+
   .credence-marquee-track {
     animation: credence-marquee 28s linear infinite;
   }
@@ -140,20 +198,25 @@
     opacity: 0.8;
   }
 
-  .credence-hero-spotlight {
+  .credence-hero-highlight {
     background:
       radial-gradient(
-        circle at var(--pointer-x, 72%) var(--pointer-y, 38%),
+        circle at var(--highlight-x, 14%) var(--highlight-y, 16%),
         rgba(224, 191, 120, 0.18) 0,
-        rgba(224, 191, 120, 0.08) 10%,
+        rgba(224, 191, 120, 0.08) 12%,
+        transparent 36%
+      ),
+      radial-gradient(
+        circle at calc(var(--highlight-x, 14%) + 10%) calc(var(--highlight-y, 16%) + 4%),
+        rgba(61, 122, 82, 0.16) 0,
         transparent 34%
       ),
       radial-gradient(
-        circle at calc(var(--pointer-x, 72%) - 18%) calc(var(--pointer-y, 38%) + 14%),
-        rgba(61, 122, 82, 0.12) 0,
-        transparent 32%
+        circle at 0% 0%,
+        rgba(255, 255, 255, 0.04) 0,
+        rgba(255, 255, 255, 0.01) 18%,
+        transparent 42%
       );
-    transition: background-position 160ms ease;
   }
 
   .credence-hero-orb {
@@ -231,50 +294,63 @@
     opacity: 0.22;
   }
 
-  .credence-hero-panel {
-    border: 1px solid rgba(201, 168, 76, 0.16);
+  .credence-hero-image-shell {
+    animation: credence-panel-float 9s ease-in-out infinite;
+  }
+
+  .credence-hero-image-glow {
+    border-radius: 38px;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
-      rgba(10, 28, 19, 0.35);
-    backdrop-filter: blur(18px);
+      radial-gradient(circle at 20% 18%, rgba(240, 223, 168, 0.16), transparent 28%),
+      radial-gradient(circle at 78% 12%, rgba(201, 168, 76, 0.18), transparent 26%),
+      radial-gradient(circle at 68% 76%, rgba(61, 122, 82, 0.3), transparent 30%);
+    filter: blur(28px);
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+
+  .credence-hero-image-frame {
+    border: 1px solid rgba(201, 168, 76, 0.18);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+      rgba(10, 28, 19, 0.45);
+    backdrop-filter: blur(16px);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 24px 60px rgba(0, 0, 0, 0.18);
-    animation: credence-panel-float 8s ease-in-out infinite;
+      0 30px 80px rgba(0, 0, 0, 0.24);
   }
 
-  .credence-hero-panel::before {
+  .credence-hero-image-frame::before {
     content: "";
     position: absolute;
-    left: 24px;
-    right: 24px;
-    top: 24px;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(201, 168, 76, 0.5), rgba(201, 168, 76, 0));
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(9, 19, 14, 0.1), rgba(9, 19, 14, 0.72)),
+      linear-gradient(90deg, rgba(13, 32, 22, 0.78), transparent 22%, transparent 76%, rgba(13, 32, 22, 0.38));
+    pointer-events: none;
+    z-index: 2;
   }
 
-  .credence-hero-panel::after {
+  .credence-hero-image-frame::after {
     content: "";
     position: absolute;
-    left: 24px;
-    right: 24px;
-    bottom: 28px;
-    height: 64px;
-    border-radius: 16px;
+    inset: 0;
     background:
-      linear-gradient(90deg, rgba(201, 168, 76, 0.14) 20%, transparent 20% 28%, rgba(201, 168, 76, 0.24) 28% 40%, transparent 40% 48%, rgba(201, 168, 76, 0.34) 48% 62%, transparent 62% 70%, rgba(201, 168, 76, 0.5) 70% 88%, transparent 88%);
-    mask: linear-gradient(to top, black 65%, transparent);
+      radial-gradient(circle at 22% 18%, rgba(240, 223, 168, 0.14), transparent 22%),
+      linear-gradient(135deg, rgba(201, 168, 76, 0.06), transparent 34%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 3;
   }
 
-  .credence-hero-panel-secondary {
-    animation-delay: 1.6s;
-    animation-duration: 10s;
+  .credence-hero-image {
+    filter: saturate(0.76) brightness(0.78) contrast(1.05) sepia(0.14) hue-rotate(-8deg);
+    transform: scale(1.03);
   }
 
-  .credence-hero-panel-secondary::after {
-    height: 80px;
-    background:
-      linear-gradient(90deg, rgba(45, 92, 62, 0.2) 16%, transparent 16% 26%, rgba(201, 168, 76, 0.18) 26% 38%, transparent 38% 48%, rgba(201, 168, 76, 0.32) 48% 62%, transparent 62% 72%, rgba(201, 168, 76, 0.46) 72% 90%, transparent 90%);
+  .credence-hero-image-outline {
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    opacity: 0.65;
   }
 
   .credence-problem-card {
@@ -375,5 +451,132 @@
 
   .credence-benefit-card:hover::before {
     opacity: 1;
+  }
+
+  .credence-dust-particle {
+    background: radial-gradient(circle, rgba(240, 223, 168, 0.9) 0, rgba(201, 168, 76, 0.55) 45%, rgba(201, 168, 76, 0) 100%);
+    box-shadow:
+      0 0 12px rgba(201, 168, 76, 0.18),
+      0 0 24px rgba(61, 122, 82, 0.08);
+    filter: blur(0.2px);
+    opacity: 0;
+    animation: credence-dust-float linear infinite;
+  }
+
+  .credence-story-card {
+    animation: credence-story-in 0.75s ease both;
+  }
+
+  .credence-story-frame {
+    height: 100%;
+    border: 1px solid rgba(201, 168, 76, 0.12);
+    border-radius: 28px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+      #0b1510;
+    padding: 28px;
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .credence-story-card:hover .credence-story-frame {
+    transform: translateY(-4px);
+    border-color: rgba(201, 168, 76, 0.24);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+  }
+
+  .credence-story-frame-gold {
+    background:
+      radial-gradient(circle at top right, rgba(201, 168, 76, 0.1), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+      #0b1510;
+  }
+
+  .credence-story-frame-green {
+    background:
+      radial-gradient(circle at top right, rgba(61, 122, 82, 0.14), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+      #0b1510;
+  }
+
+  .credence-story-video {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .credence-story-video::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 34px 34px;
+    opacity: 0.32;
+  }
+
+  .credence-story-video-ui {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    top: 18px;
+    height: 14px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+  }
+
+  .credence-story-bars {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    width: 48%;
+    height: 46%;
+    border-radius: 22px;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 14%, transparent 14% 24%, rgba(201, 168, 76, 0.18) 24% 38%, transparent 38% 48%, rgba(201, 168, 76, 0.3) 48% 62%, transparent 62% 72%, rgba(201, 168, 76, 0.48) 72% 88%, transparent 88%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+    box-shadow: inset 0 0 0 1px rgba(201, 168, 76, 0.08);
+  }
+
+  .credence-story-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .credence-hero-stat {
+    position: relative;
+    animation: credence-stat-in 0.7s ease both;
+  }
+
+  .credence-hero-stat::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 92px;
+    height: 92px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.14), transparent 70%);
+    transform: translate(-50%, -50%);
+    filter: blur(14px);
+    opacity: 0;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+  }
+
+  .credence-hero-stat:hover::before {
+    opacity: 1;
+  }
+
+  .credence-hero-stat-value {
+    display: inline-block;
+    animation: credence-stat-glow 5.5s ease-in-out infinite;
   }
 }

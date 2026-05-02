@@ -6,6 +6,7 @@ import type {
   PricingTier,
   ProblemItem,
   ServiceItem,
+  SuccessStoryItem,
   StatItem,
   TrustItem,
 } from "./credence-landing.types";
@@ -145,6 +146,57 @@ export const benefits: BenefitItem[] = [
     icon: "COST",
     title: "Only pay for what you actually use",
     description: "No retainers. No salary overhead. The pay-per-file model keeps costs lean.",
+  },
+];
+
+export const successStories: SuccessStoryItem[] = [
+  {
+    eyebrow: "Client Story 01",
+    title: "Security team lead on replacing old antivirus",
+    quote:
+      "Public YouTube testimonial used as a realistic placeholder. The client explains why their team changed systems and what the transition looked like from the operator side.",
+    result: "Useful stand-in for a structured B2B success-story video.",
+    accent: "gold",
+    videoId: "OiegXv7M_F8",
+    videoUrl: "https://www.youtube.com/watch?v=OiegXv7M_F8",
+    sourceLabel: "SentinelOne sample",
+    role: "Global cosmetics company",
+  },
+  {
+    eyebrow: "Client Story 02",
+    title: "Director of IT sharing a platform switch story",
+    quote:
+      "Another public YouTube testimonial placeholder. This one feels closer to a direct decision-maker case study, with a clear before-and-after narrative.",
+    result: "Great for showing buyer confidence and operational proof.",
+    accent: "green",
+    videoId: "6NU4LkIOYwk",
+    videoUrl: "https://www.youtube.com/watch?v=6NU4LkIOYwk",
+    sourceLabel: "SentinelOne sample",
+    role: "Whitgift School IT leadership",
+  },
+  {
+    eyebrow: "Client Story 03",
+    title: "Short-form video testimonial layout sample",
+    quote:
+      "This public testimonial is being used purely as a realistic embedded-video placeholder so the section feels authentic while you gather your own success stories.",
+    result: "Helpful for testing a lighter, simpler testimonial card.",
+    accent: "gold",
+    videoId: "y7ldn_Gyv1w",
+    videoUrl: "https://www.youtube.com/watch?v=y7ldn_Gyv1w",
+    sourceLabel: "Medical School sample",
+    role: "General testimonial format",
+  },
+  {
+    eyebrow: "Client Story 04",
+    title: "Direct-to-camera testimonial example",
+    quote:
+      "Included as a fourth public YouTube stand-in so the layout can demonstrate how multiple stories will stack once you have more real client videos available.",
+    result: "Shows the section still works when more stories are added.",
+    accent: "green",
+    videoId: "oovbx3pCn6A",
+    videoUrl: "https://www.youtube.com/watch?v=oovbx3pCn6A",
+    sourceLabel: "Stem Cell TV sample",
+    role: "Patient-style testimonial format",
   },
 ];
 

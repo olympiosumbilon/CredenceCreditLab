@@ -28,6 +28,18 @@ export interface BenefitItem {
   description: string;
 }
 
+export interface SuccessStoryItem {
+  eyebrow: string;
+  title: string;
+  quote: string;
+  result: string;
+  accent: string;
+  videoId: string;
+  videoUrl: string;
+  sourceLabel: string;
+  role: string;
+}
+
 export interface TrustItem {
   icon: string;
   title: string;

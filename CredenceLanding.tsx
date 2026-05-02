@@ -1,4 +1,4 @@
-import { useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import {
   authorityStats,
@@ -11,12 +11,15 @@ import {
   marqueeItems,
   navLinks,
   painPoints,
-  pricingTiers,
+  successStories,
   services,
   trustBadges,
   trustItems,
 } from "./credence-landing.data";
 import credenceLogo from "./src/assets/credence-logo.png";
+import teamCollabImage from "./src/assets/team-collab.png";
+
+const CALENDLY_URL = "https://calendly.com/pyowdigitals/15-minute-meeting";
 
 interface IconProps {
   className?: string;
@@ -34,6 +37,10 @@ interface PrimaryButtonProps {
 }
 
 interface BenefitIconProps {
+  icon: string;
+}
+
+interface TrustIconProps {
   icon: string;
 }
 
@@ -97,10 +104,12 @@ function BrandMark() {
   );
 }
 
-function PrimaryButton({ href = "#apply", children, centered = false }: PrimaryButtonProps) {
+function PrimaryButton({ href = CALENDLY_URL, children, centered = false }: PrimaryButtonProps) {
   return (
     <a
       href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noreferrer" : undefined}
       className={`group inline-flex items-center gap-2 rounded-lg bg-[#c9a84c] px-7 py-4 text-sm font-bold tracking-[0.02em] text-[#0f2419] transition duration-200 hover:-translate-y-0.5 hover:bg-[#e0bf78] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)] ${
         centered ? "mx-auto" : ""
       }`}
@@ -257,21 +266,159 @@ function BenefitIcon({ icon }: BenefitIconProps) {
   }
 }
 
+function TrustIcon({ icon }: TrustIconProps) {
+  const iconClassName = "h-5 w-5 text-[#0f2419]";
+
+  switch (icon) {
+    case "7+":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M12 7V12L15 14"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+      );
+    case "LAW":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M12 5V19"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M7 8H17"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M5 8L3 12H7L5 8Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M19 8L17 12H21L19 8Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 19H15"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "PPF":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M12 4V20"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M15.5 7.5C15.5 6.11929 13.933 5 12 5C10.067 5 8.5 6.11929 8.5 7.5C8.5 8.88071 10.067 10 12 10C13.933 10 15.5 11.1193 15.5 12.5C15.5 13.8807 13.933 15 12 15C10.067 15 8.5 13.8807 8.5 12.5"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "ALLY":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M8.5 13.5L12 17L15.5 13.5"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15.5 10.5C15.5 9.11929 14.3807 8 13 8C12.4296 8 11.9038 8.19114 11.4838 8.51309C11.0637 8.19114 10.5379 8 9.96755 8C8.58684 8 7.46755 9.11929 7.46755 10.5C7.46755 11.3555 7.89125 12.1121 8.54061 12.5667L11.4838 14.75L14.427 12.5667C15.0763 12.1121 15.5 11.3555 15.5 10.5Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    default:
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+      );
+  }
+}
+
+function PlayIcon() {
+  return (
+    <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M8 7.5V16.5L16 12L8 7.5Z"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M6 3H3.75C3.05964 3 2.5 3.55964 2.5 4.25V12.25C2.5 12.9404 3.05964 13.5 3.75 13.5H11.75C12.4404 13.5 13 12.9404 13 12.25V10"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.5 3H13.5V8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 3L7 9.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function CredenceLanding() {
-  const [heroPointer, setHeroPointer] = useState({ x: 72, y: 38 });
-
-  const handleHeroPointerMove = (event: MouseEvent<HTMLElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-    setHeroPointer({ x, y });
-  };
-
   const heroStyle = {
-    "--pointer-x": `${heroPointer.x}%`,
-    "--pointer-y": `${heroPointer.y}%`,
+    "--highlight-x": "14%",
+    "--highlight-y": "16%",
   } as CSSProperties;
+
+  const dustParticles = Array.from({ length: 18 }, (_, index) => ({
+    id: index,
+    left: `${12 + ((index * 11) % 74)}%`,
+    top: `${10 + ((index * 7) % 76)}%`,
+    size: 3 + (index % 4) * 2,
+    delay: `${(index % 6) * 0.9}s`,
+    duration: `${10 + (index % 5) * 2.4}s`,
+  }));
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#0f2419] font-['DM_Sans'] text-white">
@@ -294,24 +441,25 @@ export default function CredenceLanding() {
           </div>
 
           <a
-            href="#apply"
-            className="rounded-md bg-[#c9a84c] px-5 py-3 text-sm font-bold tracking-[0.03em] text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78]"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="group inline-flex items-center gap-2 rounded-md bg-[#c9a84c] px-5 py-3 text-sm font-bold tracking-[0.03em] text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78]"
           >
-            Reserve My Spot Now 
+            Let's Talk
+            <ArrowIcon className="h-4 w-4 text-[#0f2419] transition-transform duration-200 group-hover:translate-x-1" />
           </a>
         </div>
       </nav>
 
       <section
         className="relative flex min-h-screen items-center overflow-hidden px-6 pb-16 pt-28 md:px-10 xl:px-16"
-        onMouseMove={handleHeroPointerMove}
-        onMouseLeave={() => setHeroPointer({ x: 72, y: 38 })}
         style={heroStyle}
       >
         <div className="absolute inset-0 bg-[#0f2419]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_70%_50%,rgba(45,92,62,0.35)_0%,transparent_70%),radial-gradient(ellipse_40%_40%_at_20%_80%,rgba(201,168,76,0.08)_0%,transparent_60%)]" />
         <div className="credence-hero-grid absolute inset-0 bg-[linear-gradient(rgba(201,168,76,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="credence-hero-spotlight absolute inset-0" />
+        <div className="credence-hero-highlight absolute inset-0" />
         <div className="credence-hero-orb credence-hero-orb-one absolute" />
         <div className="credence-hero-orb credence-hero-orb-two absolute" />
         <div className="credence-hero-orb credence-hero-orb-three absolute" />
@@ -319,9 +467,36 @@ export default function CredenceLanding() {
         <div className="credence-hero-ring credence-hero-ring-delayed absolute" />
         <div className="credence-hero-beam absolute" />
         <div className="credence-hero-beam credence-hero-beam-secondary absolute" />
-        <div className="pointer-events-none absolute right-[10%] top-1/2 hidden h-[360px] w-[360px] -translate-y-1/2 lg:block">
-          <div className="credence-hero-panel absolute right-0 top-0 h-40 w-56 rounded-[28px]" />
-          <div className="credence-hero-panel credence-hero-panel-secondary absolute bottom-0 left-0 h-48 w-64 rounded-[28px]" />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {dustParticles.map((particle) => (
+            <span
+              key={particle.id}
+              className="credence-dust-particle absolute rounded-full"
+              style={
+                {
+                  left: particle.left,
+                  top: particle.top,
+                  width: `${particle.size}px`,
+                  height: `${particle.size}px`,
+                  animationDelay: particle.delay,
+                  animationDuration: particle.duration,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+        <div className="pointer-events-none absolute right-[7%] top-1/2 hidden h-[460px] w-[420px] -translate-y-1/2 lg:block">
+          <div className="credence-hero-image-shell absolute inset-0">
+            <div className="credence-hero-image-glow absolute inset-0" />
+            <div className="credence-hero-image-frame absolute inset-0 overflow-hidden rounded-[34px]">
+              <img
+                src={teamCollabImage}
+                alt="Credence team collaboration"
+                className="credence-hero-image h-full w-full object-cover"
+              />
+            </div>
+            <div className="credence-hero-image-outline absolute -inset-5 rounded-[42px]" />
+          </div>
         </div>
 
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
@@ -345,7 +520,7 @@ export default function CredenceLanding() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-5">
-              <PrimaryButton>Book My Strategy Call</PrimaryButton>
+              <PrimaryButton href={CALENDLY_URL}>Book My Strategy Call</PrimaryButton>
               <a
                 href="#services"
                 className="inline-flex items-center gap-2 text-sm font-medium text-[#8aab97] transition hover:text-white"
@@ -361,12 +536,16 @@ export default function CredenceLanding() {
           </div>
 
           <div className="grid animate-credence-fade-up gap-6 sm:grid-cols-3 lg:min-w-[360px] lg:justify-items-end">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="text-left sm:text-right">
-                <div className="font-['Playfair_Display'] text-4xl font-black leading-none text-[#c9a84c]">
+            {heroStats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className="credence-hero-stat group text-left sm:text-right"
+                style={{ animationDelay: `${index * 120}ms` }}
+              >
+                <div className="credence-hero-stat-value font-['Playfair_Display'] text-4xl font-black leading-none text-[#c9a84c]">
                   {stat.value}
                 </div>
-                <div className="mt-1 text-xs uppercase tracking-[0.12em] text-[#8aab97]">
+                <div className="mt-2 text-xs uppercase tracking-[0.12em] text-[#8aab97]">
                   {stat.label}
                 </div>
               </div>
@@ -573,6 +752,99 @@ export default function CredenceLanding() {
         </div>
       </section>
 
+      <section className="border-t border-[#c9a84c]/20 bg-[#08110d] px-6 py-20 md:px-10 xl:px-16 xl:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <SectionLabel>Success Stories</SectionLabel>
+            <h2 className="font-['Playfair_Display'] text-4xl font-black leading-tight tracking-[-0.03em] md:text-5xl">
+              Real clients.
+              <br />
+              <span className="text-white/45">Real momentum.</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-[17px] leading-8 text-white/55">
+              Don't just take our word for it. This is what it looks like when operators finally
+              stop carrying every part of the business by themselves.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {successStories.map((story, index) => (
+              <article
+                key={story.title}
+                className="credence-story-card group"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div
+                  className={`credence-story-frame ${
+                    story.accent === "gold" ? "credence-story-frame-gold" : "credence-story-frame-green"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="font-['DM_Mono'] text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
+                        {story.eyebrow}
+                      </div>
+                      <div className="mt-3 text-sm text-white/45">{story.sourceLabel}</div>
+                      <h3 className="mt-4 max-w-[18ch] text-[30px] font-semibold leading-[1.12] tracking-[-0.03em] text-white">
+                        {story.title}
+                      </h3>
+                      <div className="mt-3 text-sm text-[#8aab97]">{story.role}</div>
+                    </div>
+                    <a
+                      href={story.videoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#ff2d20] shadow-[0_14px_30px_rgba(255,45,32,0.25)] transition duration-300 group-hover:scale-105 group-hover:shadow-[0_18px_36px_rgba(255,45,32,0.35)]"
+                      aria-label={`Watch ${story.title} on YouTube`}
+                    >
+                      <PlayIcon />
+                    </a>
+                  </div>
+
+                  <a
+                    href={story.videoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-8 block overflow-hidden rounded-[24px] border border-white/6 bg-[#0b1711]/90"
+                  >
+                    <div
+                      className="credence-story-video h-[220px] w-full"
+                      style={{
+                        backgroundImage: `linear-gradient(135deg, rgba(14,31,21,0.76), rgba(18,43,29,0.48)), url(https://img.youtube.com/vi/${story.videoId}/hqdefault.jpg)`,
+                      }}
+                    >
+                      <div className="credence-story-video-ui" />
+                      <div className="credence-story-play">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ff2d20] shadow-[0_18px_40px_rgba(255,45,32,0.28)]">
+                          <PlayIcon />
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                  <p className="mt-7 max-w-[44ch] text-[15px] leading-8 text-white/60">
+                    {story.quote}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#c9a84c]/12 bg-[#c9a84c]/6 px-5 py-4 text-sm font-medium text-[#f0dfa8]">
+                    <span>{story.result}</span>
+                    <a
+                      href={story.videoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-[#f0dfa8] transition hover:text-white"
+                    >
+                      Watch sample
+                      <ExternalLinkIcon />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section
         id="why-us"
         className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-[#1a3a28] px-6 py-20 md:px-10 xl:px-16 xl:py-24"
@@ -599,8 +871,8 @@ export default function CredenceLanding() {
                   key={item.title}
                   className="flex items-center gap-4 rounded-xl border border-[#c9a84c]/20 bg-[#c9a84c]/5 px-5 py-4"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#c9a84c] text-[11px] font-bold uppercase tracking-[0.08em] text-[#0f2419]">
-                    {item.icon}
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#c9a84c] shadow-[0_10px_24px_rgba(201,168,76,0.18)]">
+                    <TrustIcon icon={item.icon} />
                   </div>
                   <div>
                     <strong className="block text-[15px]">{item.title}</strong>
@@ -638,7 +910,7 @@ export default function CredenceLanding() {
         </div>
       </section>
 
-      <section
+      {/* <section
         id="pricing"
         className="border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-20 md:px-10 xl:px-16 xl:py-24"
       >
@@ -689,7 +961,9 @@ export default function CredenceLanding() {
                 </ul>
 
                 <a
-                  href="#apply"
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-4 text-center text-sm font-bold transition ${
                     tier.featured
                       ? "bg-[#c9a84c] text-[#0f2419] hover:-translate-y-0.5 hover:bg-[#e0bf78]"
@@ -703,7 +977,7 @@ export default function CredenceLanding() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="border-t border-[#c9a84c]/20 bg-[#1a3a28] px-6 py-20 md:px-10 xl:px-16 xl:py-24">
         <div className="mx-auto max-w-7xl">
@@ -744,7 +1018,7 @@ export default function CredenceLanding() {
             revenue.
           </p>
           <div className="mt-10">
-            <PrimaryButton centered>Book My Strategy Call</PrimaryButton>
+            <PrimaryButton href={CALENDLY_URL} centered>Book My Strategy Call</PrimaryButton>
           </div>
           <p className="mt-5 text-sm text-[#8aab97]">
             Limited slots available. No pressure, just strategy.
@@ -763,8 +1037,8 @@ export default function CredenceLanding() {
               Let's Build Your Credit Repair Growth System
             </h2>
             <p className="mt-5 text-base leading-8 text-white/55">
-              Tell us a bit about where you are and what you're working toward. We'll come prepared
-              with a clear plan - not a sales pitch.
+              We are focused on fast, direct booking now. Pick a time on Calendly and we will come
+              prepared with a clear strategy conversation, not a sales pitch.
             </p>
 
             <div className="mt-10 flex flex-col gap-4">
@@ -777,67 +1051,52 @@ export default function CredenceLanding() {
             </div>
           </div>
 
-          <div className="rounded-[20px] border border-[#c9a84c]/20 bg-white/[0.03] p-8 md:p-12">
-            <h3 className="font-['Playfair_Display'] text-3xl font-bold">Secure My Strategy Call</h3>
-            <p className="mt-2 text-sm text-[#8aab97]">Takes 2 minutes. We'll do the rest.</p>
+          <div className="rounded-[24px] border border-[#c9a84c]/20 bg-white/[0.03] p-8 md:p-12">
+            <h3 className="font-['Playfair_Display'] text-3xl font-bold">Book Your Strategy Call</h3>
+            <p className="mt-2 text-sm leading-7 text-[#8aab97]">
+              Skip the long form. Choose a time directly in Calendly and we will handle the rest.
+            </p>
 
-            <form className="mt-8 space-y-5">
-              <div>
-                <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.1em] text-white/60">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Your full name"
-                  className="w-full rounded-lg border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[15px] text-white outline-none transition placeholder:text-white/25 focus:border-[#c9a84c] focus:bg-[#c9a84c]/6"
-                />
+            <div className="mt-8 rounded-2xl border border-[#c9a84c]/12 bg-[#c9a84c]/6 p-6">
+              <div className="font-['DM_Mono'] text-[11px] uppercase tracking-[0.18em] text-[#c9a84c]">
+                What happens next
               </div>
-
-              <div>
-                <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.1em] text-white/60">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full rounded-lg border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[15px] text-white outline-none transition placeholder:text-white/25 focus:border-[#c9a84c] focus:bg-[#c9a84c]/6"
-                />
+              <div className="mt-4 space-y-4">
+                <div className="flex items-start gap-3 text-sm leading-7 text-white/72">
+                  <CheckIcon className="mt-1 h-5 w-5 shrink-0 text-[#c9a84c]" />
+                  Pick a 15-minute slot that works for you.
+                </div>
+                <div className="flex items-start gap-3 text-sm leading-7 text-white/72">
+                  <CheckIcon className="mt-1 h-5 w-5 shrink-0 text-[#c9a84c]" />
+                  We review your current bottlenecks before the call.
+                </div>
+                <div className="flex items-start gap-3 text-sm leading-7 text-white/72">
+                  <CheckIcon className="mt-1 h-5 w-5 shrink-0 text-[#c9a84c]" />
+                  You leave with a clearer scaling path and next steps.
+                </div>
               </div>
+            </div>
 
-              <div>
-                <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.1em] text-white/60">
-                  Monthly Active Clients
-                </label>
-                <select className="w-full appearance-none rounded-lg border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[15px] text-white outline-none transition focus:border-[#c9a84c] focus:bg-[#c9a84c]/6">
-                  <option value="">Select range</option>
-                  <option>Just starting (0-5)</option>
-                  <option>Growing (6-20)</option>
-                  <option>Scaling (21-50)</option>
-                  <option>Established (50+)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="mb-2 block text-[12px] font-semibold uppercase tracking-[0.1em] text-white/60">
-                  Biggest Challenge Right Now
-                </label>
-                <textarea
-                  placeholder="e.g. I'm spending too much time on disputes and can't focus on getting new clients..."
-                  className="min-h-[110px] w-full rounded-lg border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[15px] text-white outline-none transition placeholder:text-white/25 focus:border-[#c9a84c] focus:bg-[#c9a84c]/6"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#c9a84c] px-5 py-4 text-base font-bold text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)]"
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#c9a84c] px-5 py-4 text-base font-bold text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)]"
               >
                 Secure My Call
                 <ArrowIcon />
-              </button>
-            </form>
+              </a>
+              <a
+                href="#services"
+                className="inline-flex flex-1 items-center justify-center rounded-lg border border-white/12 px-5 py-4 text-base font-semibold text-white/82 transition hover:border-[#c9a84c]/30 hover:bg-white/[0.03] hover:text-white"
+              >
+                Review Services First
+              </a>
+            </div>
 
-            <p className="mt-4 text-center text-xs text-[#8aab97]">
-              Your information is private and never shared.
+            <p className="mt-5 text-center text-xs text-[#8aab97]">
+              Sample Calendly link connected for now. Replace with your final booking URL anytime.
             </p>
           </div>
         </div>
