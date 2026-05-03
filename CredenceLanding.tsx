@@ -14,6 +14,7 @@ import {
   successStories,
   trustBadges,
   trustItems,
+  howItWorksSteps,
 } from "./credence-landing.data";
 import credenceLogo from "./src/assets/credence-logo.png";
 import teamCollabImage from "./src/assets/team-collab.png";
@@ -361,6 +362,48 @@ function TrustIcon({ icon }: TrustIconProps) {
 }
 
 
+function StepIcon({ icon }: { icon: string }) {
+  const iconClassName = "h-8 w-8 text-[#c9a84c]";
+
+  switch (icon) {
+    case "DOC":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <line x1="10" y1="9" x2="8" y2="9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "SEARCH":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    case "CHECK":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 11l3 3L22 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "ROCKET":
+      return (
+        <svg className={iconClassName} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 export function Header() {
   const handleLinkClick = (href: string) => {
     if (href === window.location.pathname) {
@@ -683,6 +726,48 @@ export default function CredenceLanding() {
                 <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-20 md:px-10 xl:px-16 xl:py-24">
+        <div className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(201,168,76,0.08)_0%,transparent_70%)]" />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mx-auto mb-20 max-w-2xl text-center">
+            <h2 className="font-['Playfair_Display'] text-4xl font-black leading-tight tracking-[-0.03em] text-white md:text-5xl">
+              How It <span className="text-[#c9a84c]">Works</span>
+            </h2>
+            <p className="mt-4 text-[17px] leading-8 text-white/55">
+              Getting started is easier than you think. Follow our simple 4-step process.
+            </p>
+          </div>
+
+          <div className="relative mt-16 grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-6">
+            {/* Dotted Line connector */}
+            <div className="absolute left-[12%] right-[12%] top-12 hidden h-[2px] border-t-2 border-dashed border-[#c9a84c]/30 md:block" />
+
+            {howItWorksSteps.map((step) => (
+              <div key={step.title} className="relative flex flex-col items-center text-center">
+                <div 
+                  className="relative mb-6 flex h-24 w-24 items-center justify-center rounded-full shadow-[0_0_30px_rgba(201,168,76,0.15)] ring-1 ring-[#c9a84c]/30"
+                  style={{ background: 'linear-gradient(rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.1)), #0f2419' }}
+                >
+                  <StepIcon icon={step.icon} />
+                  
+                  <div className="absolute -right-1 -top-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#c9a84c] text-sm font-bold text-[#0f2419] shadow-[0_4px_12px_rgba(201,168,76,0.4)]">
+                    {step.number}
+                  </div>
+                </div>
+                
+                <h3 className="mb-3 text-[19px] font-bold tracking-tight text-white">{step.title}</h3>
+                <p className="text-[14px] leading-relaxed text-white/60">{step.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="relative z-10 mt-16 text-center">
+            <PrimaryButton href="#apply">Help Me Scale My Business</PrimaryButton>
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ import type {
   SuccessStoryItem,
   StatItem,
   TrustItem,
+  HowItWorksStep,
 } from "./credence-landing.types";
 
 export const navLinks: NavLink[] = [
@@ -333,5 +334,32 @@ export const footerLinks: FooterColumn[] = [
   {
     title: "Legal",
     links: ["Privacy Policy", "Terms of Service", "FCRA Compliance"],
+  },
+];
+
+export const howItWorksSteps: HowItWorksStep[] = [
+  {
+    number: 1,
+    icon: "DOC",
+    title: "Book a Strategy Call",
+    description: "Pick a 15-minute slot to discuss your current bottlenecks and scaling goals.",
+  },
+  {
+    number: 2,
+    icon: "SEARCH",
+    title: "Review & Blueprint",
+    description: "We review your operations and build a customized plan to handle your back-office tasks.",
+  },
+  {
+    number: 3,
+    icon: "CHECK",
+    title: "Seamless Integration",
+    description: "We plug into your existing systems and take over disputes, CRM, and admin seamlessly.",
+  },
+  {
+    number: 4,
+    icon: "ROCKET",
+    title: "Scale & Grow",
+    description: "Your team handles the operations while you focus 100% on acquiring new clients and revenue.",
   },
 ];

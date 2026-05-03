@@ -66,3 +66,10 @@ export interface FooterColumn {
   title: string;
   links: string[];
 }
+
+export interface HowItWorksStep {
+  number: number;
+  icon: string;
+  title: string;
+  description: string;
+}
