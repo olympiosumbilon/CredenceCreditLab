@@ -363,47 +363,6 @@ function TrustIcon({ icon }: TrustIconProps) {
   }
 }
 
-function PlayIcon() {
-  return (
-    <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M8 7.5V16.5L16 12L8 7.5Z"
-        fill="currentColor"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ExternalLinkIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path
-        d="M6 3H3.75C3.05964 3 2.5 3.55964 2.5 4.25V12.25C2.5 12.9404 3.05964 13.5 3.75 13.5H11.75C12.4404 13.5 13 12.9404 13 12.25V10"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8.5 3H13.5V8"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M13.5 3L7 9.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export default function CredenceLanding() {
   const heroStyle = {
