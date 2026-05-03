@@ -195,7 +195,7 @@ export const successStories: SuccessStoryItem[] = [
       "Included as a fourth public YouTube stand-in so the layout can demonstrate how multiple stories will stack once you have more real client videos available.",
     result: "Shows the section still works when more stories are added.",
     accent: "green",
-    videoId: "oovbx3pCn6A",
+    videoId: "bHphoDt0YIw",
     videoUrl: "https://www.youtube.com/watch?v=bHphoDt0YIw",
     sourceLabel: "Stem Cell TV sample",
     role: "Patient-style testimonial format",
