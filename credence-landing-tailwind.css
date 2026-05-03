@@ -579,4 +579,20 @@
     display: inline-block;
     animation: credence-stat-glow 5.5s ease-in-out infinite;
   }
+
+  @keyframes credence-pop {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+    }
+    50% {
+      transform: scale(1.12);
+      box-shadow: 0 0 50px rgba(201, 168, 76, 0.35);
+      border-color: rgba(201, 168, 76, 0.6);
+    }
+  }
+
+  .animate-credence-pop {
+    animation: credence-pop 3s infinite ease-in-out;
+  }
 }

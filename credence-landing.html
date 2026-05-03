@@ -1069,6 +1069,22 @@
       color: var(--gold);
     }
 
+    @keyframes credence-pop {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+      }
+      50% {
+        transform: scale(1.12);
+        box-shadow: 0 0 50px rgba(201, 168, 76, 0.35);
+        border-color: rgba(201, 168, 76, 0.6);
+      }
+    }
+
+    .animate-credence-pop {
+      animation: credence-pop 3s infinite ease-in-out;
+    }
+
     .hiw-number {
       position: absolute;
       top: -4px;
@@ -1749,7 +1765,7 @@
     <div class="hiw-grid">
       <div class="hiw-line"></div>
       <div class="hiw-step">
-        <div class="hiw-icon-wrap">
+        <div class="hiw-icon-wrap animate-credence-pop" style="animation-delay: 0s">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor"
               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
@@ -1765,7 +1781,7 @@
         <p class="hiw-desc">Pick a 15-minute slot to discuss your current bottlenecks and scaling goals.</p>
       </div>
       <div class="hiw-step">
-        <div class="hiw-icon-wrap">
+        <div class="hiw-icon-wrap animate-credence-pop" style="animation-delay: 0.4s">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="1.8"
@@ -1777,7 +1793,7 @@
         <p class="hiw-desc">We review your operations and build a customized plan to handle your back-office tasks.</p>
       </div>
       <div class="hiw-step">
-        <div class="hiw-icon-wrap">
+        <div class="hiw-icon-wrap animate-credence-pop" style="animation-delay: 0.8s">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
               stroke-linejoin="round" />
@@ -1790,7 +1806,7 @@
         <p class="hiw-desc">We plug into your existing systems and take over disputes, CRM, and admin seamlessly.</p>
       </div>
       <div class="hiw-step">
-        <div class="hiw-icon-wrap">
+        <div class="hiw-icon-wrap animate-credence-pop" style="animation-delay: 1.2s">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
             <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />

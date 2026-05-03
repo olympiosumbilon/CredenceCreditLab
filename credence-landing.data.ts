@@ -196,7 +196,7 @@ export const successStories: SuccessStoryItem[] = [
     result: "Shows the section still works when more stories are added.",
     accent: "green",
     videoId: "oovbx3pCn6A",
-    videoUrl: "https://www.youtube.com/watch?v=oovbx3pCn6A",
+    videoUrl: "https://www.youtube.com/watch?v=bHphoDt0YIw",
     sourceLabel: "Stem Cell TV sample",
     role: "Patient-style testimonial format",
   },

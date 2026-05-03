@@ -747,11 +747,14 @@ export default function CredenceLanding() {
             {/* Dotted Line connector */}
             <div className="absolute left-[12%] right-[12%] top-12 hidden h-[2px] border-t-2 border-dashed border-[#c9a84c]/30 md:block" />
 
-            {howItWorksSteps.map((step) => (
+            {howItWorksSteps.map((step, index) => (
               <div key={step.title} className="relative flex flex-col items-center text-center">
                 <div 
-                  className="relative mb-6 flex h-24 w-24 items-center justify-center rounded-full shadow-[0_0_30px_rgba(201,168,76,0.15)] ring-1 ring-[#c9a84c]/30"
-                  style={{ background: 'linear-gradient(rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.1)), #0f2419' }}
+                  className="relative mb-6 flex h-24 w-24 items-center justify-center rounded-full shadow-[0_0_30px_rgba(201,168,76,0.15)] ring-1 ring-[#c9a84c]/30 animate-credence-pop"
+                  style={{ 
+                    background: 'linear-gradient(rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.1)), #0f2419',
+                    animationDelay: `${index * 0.4}s`
+                  }}
                 >
                   <StepIcon icon={step.icon} />
                   
