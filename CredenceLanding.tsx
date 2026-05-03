@@ -579,7 +579,7 @@ export default function CredenceLanding() {
 
             <h1 className="max-w-4xl font-['Playfair_Display'] text-5xl font-black leading-[1.05] tracking-[-0.04em] md:text-6xl xl:text-7xl">
               Build &amp; Scale Your Credit Repair Business -
-              <span className="relative ml-2 inline-block text-[#c9a84c]">
+              <span className="relative ml-2 inline-block text-[#c9a84c] animate-credence-text-shine">
                 Without Hiring a Full Team
                 <span className="absolute inset-x-0 -bottom-1 h-[3px] bg-gradient-to-r from-[#c9a84c] to-transparent" />
               </span>
@@ -700,7 +700,7 @@ export default function CredenceLanding() {
       </section>
 
 
-{/* services section placeholder on homepage */}
+      {/* services section placeholder on homepage */}
       <section
         id="services"
         className="relative overflow-hidden bg-gradient-to-b from-[#0f2419] to-[#1a3a28] px-6 py-20 md:px-10 xl:px-16 xl:py-24"
@@ -749,20 +749,20 @@ export default function CredenceLanding() {
 
             {howItWorksSteps.map((step, index) => (
               <div key={step.title} className="relative flex flex-col items-center text-center">
-                <div 
+                <div
                   className="relative mb-6 flex h-24 w-24 items-center justify-center rounded-full shadow-[0_0_30px_rgba(201,168,76,0.15)] ring-1 ring-[#c9a84c]/30 animate-credence-pop"
-                  style={{ 
+                  style={{
                     background: 'linear-gradient(rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.1)), #0f2419',
                     animationDelay: `${index * 0.4}s`
                   }}
                 >
                   <StepIcon icon={step.icon} />
-                  
+
                   <div className="absolute -right-1 -top-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#c9a84c] text-sm font-bold text-[#0f2419] shadow-[0_4px_12px_rgba(201,168,76,0.4)]">
                     {step.number}
                   </div>
                 </div>
-                
+
                 <h3 className="mb-3 text-[19px] font-bold tracking-tight text-white">{step.title}</h3>
                 <p className="text-[14px] leading-relaxed text-white/60">{step.description}</p>
               </div>
@@ -830,14 +830,14 @@ export default function CredenceLanding() {
               <article
                 key={story.title}
                 className={`group relative overflow-hidden rounded-[24px] border border-[#c9a84c]/20 bg-[#0b1711] shadow-2xl ${index === 0
+                  ? "md:col-span-1 md:row-span-1 aspect-video"
+                  : index === 1
                     ? "md:col-span-1 md:row-span-1 aspect-video"
-                    : index === 1
-                      ? "md:col-span-1 md:row-span-1 aspect-video"
-                      : index === 2
-                        ? "md:col-span-2 md:row-span-1 aspect-video"
-                        : index === 3
-                          ? "md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2 aspect-[9/16] md:aspect-auto"
-                          : "aspect-video"
+                    : index === 2
+                      ? "md:col-span-2 md:row-span-1 aspect-video"
+                      : index === 3
+                        ? "md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2 aspect-[9/16] md:aspect-auto"
+                        : "aspect-video"
                   }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
