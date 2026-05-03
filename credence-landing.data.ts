@@ -12,10 +12,11 @@ import type {
 } from "./credence-landing.types";
 
 export const navLinks: NavLink[] = [
-  { href: "#services", label: "Services" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#apply", label: "Apply" },
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/#why-us", label: "Why Us" },
+  // { href: "/#pricing", label: "Pricing" },
+  { href: "/#apply", label: "Apply" },
 ];
 
 export const heroStats: StatItem[] = [

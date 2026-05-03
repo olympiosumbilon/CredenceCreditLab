@@ -1,18 +1,17 @@
+import { useEffect } from "react";
 import type { CSSProperties, ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   authorityStats,
   benefits,
-  coreServiceFeatures,
   faqs,
-  featuredServiceStats,
   footerLinks,
   heroStats,
   marqueeItems,
   navLinks,
   painPoints,
   successStories,
-  services,
   trustBadges,
   trustItems,
 } from "./credence-landing.data";
@@ -44,7 +43,7 @@ interface TrustIconProps {
   icon: string;
 }
 
-function ArrowIcon({ className = "h-4 w-4" }: IconProps) {
+export function ArrowIcon({ className = "h-4 w-4" }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path
@@ -73,12 +72,11 @@ function CheckIcon({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-function SectionLabel({ children, centered = false }: SectionLabelProps) {
+export function SectionLabel({ children, centered = false }: SectionLabelProps) {
   return (
     <div
-      className={`mb-4 flex items-center gap-3 font-['DM_Mono'] text-[11px] font-medium uppercase tracking-[0.3em] text-[#c9a84c] ${
-        centered ? "justify-center" : ""
-      }`}
+      className={`mb-4 flex items-center gap-3 font-['DM_Mono'] text-[11px] font-medium uppercase tracking-[0.3em] text-[#c9a84c] ${centered ? "justify-center" : ""
+        }`}
     >
       <span className="h-px w-8 bg-[#c9a84c]" />
       {children}
@@ -86,7 +84,7 @@ function SectionLabel({ children, centered = false }: SectionLabelProps) {
   );
 }
 
-function BrandMark() {
+export function BrandMark() {
   return (
     <div className="flex items-center gap-3">
       <img
@@ -104,15 +102,14 @@ function BrandMark() {
   );
 }
 
-function PrimaryButton({ href = CALENDLY_URL, children, centered = false }: PrimaryButtonProps) {
+export function PrimaryButton({ href = CALENDLY_URL, children, centered = false }: PrimaryButtonProps) {
   return (
     <a
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className={`group inline-flex items-center gap-2 rounded-lg bg-[#c9a84c] px-7 py-4 text-sm font-bold tracking-[0.02em] text-[#0f2419] transition duration-200 hover:-translate-y-0.5 hover:bg-[#e0bf78] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)] ${
-        centered ? "mx-auto" : ""
-      }`}
+      className={`group inline-flex items-center gap-2 rounded-lg bg-[#c9a84c] px-7 py-4 text-sm font-bold tracking-[0.02em] text-[#0f2419] transition duration-200 hover:-translate-y-0.5 hover:bg-[#e0bf78] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)] ${centered ? "mx-auto" : ""
+        }`}
     >
       {children}
       <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -364,7 +361,107 @@ function TrustIcon({ icon }: TrustIconProps) {
 }
 
 
+export function Header() {
+  const handleLinkClick = (href: string) => {
+    if (href === window.location.pathname) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#c9a84c]/20 bg-[#0f2419]/85 px-6 py-4 backdrop-blur md:px-10 xl:px-16">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
+        <Link to="/" className="shrink-0" onClick={() => handleLinkClick("/")}>
+          <BrandMark />
+        </Link>
+
+        <div className="hidden items-center gap-9 md:flex">
+          {navLinks.map((item) => (
+            <Link
+              key={item.href}
+              to={item.href}
+              onClick={() => handleLinkClick(item.href)}
+              className="text-sm font-medium text-[#8aab97] transition hover:text-[#c9a84c]"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="group inline-flex items-center gap-2 rounded-md bg-[#c9a84c] px-5 py-3 text-sm font-bold tracking-[0.03em] text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78]"
+        >
+          Let's Talk
+          <ArrowIcon className="h-4 w-4 text-[#0f2419] transition-transform duration-200 group-hover:translate-x-1" />
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-16 md:px-10 xl:px-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col justify-between gap-10 lg:flex-row">
+          <div>
+            <Link to="/" className="inline-block">
+              <BrandMark />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-7 text-[#8aab97]">
+              Your invisible back office - powering credit repair businesses behind the scenes so
+              you can focus on growth.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-10 lg:gap-20">
+            {footerLinks.map((column) => (
+              <div key={column.title}>
+                <h4 className="mb-5 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#c9a84c]">
+                  {column.title}
+                </h4>
+                <div className="space-y-3">
+                  {column.links.map((link) => (
+                    <Link
+                      key={link}
+                      to="#"
+                      className="block text-sm text-[#8aab97] transition hover:text-white"
+                    >
+                      {link}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-[#c9a84c]/20 pt-7 text-center text-[13px] text-white/30 md:flex-row">
+          <span>Copyright 2025 Credence Credit Lab. All rights reserved.</span>
+          <span>Built for credit repair operators who are serious about scale.</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function CredenceLanding() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 0);
+    }
+  }, [hash]);
+
   const heroStyle = {
     "--highlight-x": "14%",
     "--highlight-y": "16%",
@@ -381,35 +478,7 @@ export default function CredenceLanding() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#0f2419] font-['DM_Sans'] text-white">
-      <nav className="fixed inset-x-0 top-0 z-50 border-b border-[#c9a84c]/20 bg-[#0f2419]/85 px-6 py-4 backdrop-blur md:px-10 xl:px-16">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6">
-          <a href="#" className="shrink-0">
-            <BrandMark />
-          </a>
-
-          <div className="hidden items-center gap-9 md:flex">
-            {navLinks.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-[#8aab97] transition hover:text-[#c9a84c]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center gap-2 rounded-md bg-[#c9a84c] px-5 py-3 text-sm font-bold tracking-[0.03em] text-[#0f2419] transition hover:-translate-y-0.5 hover:bg-[#e0bf78]"
-          >
-            Let's Talk
-            <ArrowIcon className="h-4 w-4 text-[#0f2419] transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-        </div>
-      </nav>
+      <Header />
 
       <section
         className="relative flex min-h-screen items-center overflow-hidden px-6 pb-16 pt-28 md:px-10 xl:px-16"
@@ -587,13 +656,15 @@ export default function CredenceLanding() {
         </div>
       </section>
 
+
+{/* services section placeholder on homepage */}
       <section
         id="services"
         className="relative overflow-hidden bg-gradient-to-b from-[#0f2419] to-[#1a3a28] px-6 py-20 md:px-10 xl:px-16 xl:py-24"
       >
         <div className="absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(45,92,62,0.4)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl">
-          <div className="mx-auto mb-16 max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center">
             <SectionLabel centered>The Solution</SectionLabel>
             <h2 className="font-['Playfair_Display'] text-4xl font-black leading-tight tracking-[-0.03em] md:text-5xl">
               What if you had a full team...
@@ -603,75 +674,15 @@ export default function CredenceLanding() {
               Credence Credit Lab becomes your invisible back office - powering your business
               behind the scenes so you can focus 100% on acquisition and revenue.
             </p>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-2">
-            <article className="grid gap-10 rounded-2xl border border-[#c9a84c]/40 bg-[linear-gradient(135deg,rgba(201,168,76,0.1)_0%,rgba(45,92,62,0.2)_100%)] p-9 lg:col-span-2 lg:grid-cols-2">
-              <div>
-                <div className="mb-4 font-['DM_Mono'] text-[11px] uppercase tracking-[0.2em] text-[#c9a84c]">
-                  01 - Core Service
-                </div>
-                <h3 className="font-['Playfair_Display'] text-3xl font-bold">
-                  Complete Client Acquisition System
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-white/55">
-                  We handle every layer of your operation - from dispute processing to client
-                  communications - so nothing falls through the cracks while you scale.
-                </p>
-                <ul className="mt-6 flex flex-col gap-3">
-                  {coreServiceFeatures.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-sm text-white/70">
-                      <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#c9a84c]/20 text-[10px] text-[#c9a84c]">
-                        +
-                      </span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <div className="mb-4 font-['DM_Mono'] text-[11px] uppercase tracking-[0.2em] text-[#c9a84c]">
-                  Results You Can Expect
-                </div>
-                <div className="mt-4 flex flex-wrap gap-5">
-                  {featuredServiceStats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="min-w-[140px] flex-1 rounded-2xl border border-[#c9a84c]/20 bg-white/[0.02] px-7 py-8 text-center"
-                    >
-                      <div className="font-['Playfair_Display'] text-4xl font-black leading-none text-[#c9a84c]">
-                        {stat.value}
-                      </div>
-                      <div className="mt-2 text-sm leading-6 text-white/55">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </article>
-
-            {services.map((service) => (
-              <article
-                key={service.number}
-                className="rounded-2xl border border-[#c9a84c]/20 bg-white/[0.02] p-9 backdrop-blur transition hover:-translate-y-1 hover:border-[#c9a84c]/50"
+            <div className="mt-10">
+              <Link
+                to="/services"
+                className="group inline-flex items-center gap-2 rounded-lg bg-[#c9a84c] px-7 py-4 text-sm font-bold tracking-[0.02em] text-[#0f2419] transition duration-200 hover:-translate-y-0.5 hover:bg-[#e0bf78] hover:shadow-[0_12px_40px_rgba(201,168,76,0.3)]"
               >
-                <div className="mb-4 font-['DM_Mono'] text-[11px] uppercase tracking-[0.2em] text-[#c9a84c]">
-                  {service.number}
-                </div>
-                <h3 className="font-['Playfair_Display'] text-[26px] font-bold">{service.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-white/55">{service.description}</p>
-                <ul className="mt-6 flex flex-col gap-3">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-sm text-white/70">
-                      <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#c9a84c]/20 text-[10px] text-[#c9a84c]">
-                        +
-                      </span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+                See All Services
+                <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -730,17 +741,16 @@ export default function CredenceLanding() {
             {successStories.map((story, index) => (
               <article
                 key={story.title}
-                className={`group relative overflow-hidden rounded-[24px] border border-[#c9a84c]/20 bg-[#0b1711] shadow-2xl ${
-                  index === 0
+                className={`group relative overflow-hidden rounded-[24px] border border-[#c9a84c]/20 bg-[#0b1711] shadow-2xl ${index === 0
                     ? "md:col-span-1 md:row-span-1 aspect-video"
                     : index === 1
-                    ? "md:col-span-1 md:row-span-1 aspect-video"
-                    : index === 2
-                    ? "md:col-span-2 md:row-span-1 aspect-video"
-                    : index === 3
-                    ? "md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2 aspect-[9/16] md:aspect-auto"
-                    : "aspect-video"
-                }`}
+                      ? "md:col-span-1 md:row-span-1 aspect-video"
+                      : index === 2
+                        ? "md:col-span-2 md:row-span-1 aspect-video"
+                        : index === 3
+                          ? "md:col-span-1 md:col-start-3 md:row-start-1 md:row-span-2 aspect-[9/16] md:aspect-auto"
+                          : "aspect-video"
+                  }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="absolute inset-0">
@@ -757,28 +767,6 @@ export default function CredenceLanding() {
           </div>
         </div>
       </section>
-
-            <section className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-gradient-to-br from-[#1a3a28] to-[#2d5c3e] px-6 py-24 text-center md:px-10 xl:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_50%_50%,rgba(201,168,76,0.1)_0%,transparent_70%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <h2 className="font-['Playfair_Display'] text-5xl font-black leading-tight tracking-[-0.04em] md:text-6xl">
-            Your Competitors Are
-            <br />
-            <span className="text-[#c9a84c]">Scaling While You're Stuck.</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/65">
-            Don't let operations hold your growth hostage. Let's build your back office and your
-            revenue.
-          </p>
-          <div className="mt-10">
-            <PrimaryButton href={CALENDLY_URL} centered>Book My Strategy Call</PrimaryButton>
-          </div>
-          <p className="mt-5 text-sm text-[#8aab97]">
-            Limited slots available. No pressure, just strategy.
-          </p>
-        </div>
-      </section>
-
 
       <section
         id="why-us"
@@ -1037,47 +1025,7 @@ export default function CredenceLanding() {
         </div>
       </section> */}
 
-      <footer className="border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-16 md:px-10 xl:px-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col justify-between gap-10 lg:flex-row">
-            <div>
-              <a href="#" className="inline-block">
-                <BrandMark />
-              </a>
-              <p className="mt-4 max-w-xs text-sm leading-7 text-[#8aab97]">
-                Your invisible back office - powering credit repair businesses behind the scenes so
-                you can focus on growth.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-10 lg:gap-20">
-              {footerLinks.map((column) => (
-                <div key={column.title}>
-                  <h4 className="mb-5 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#c9a84c]">
-                    {column.title}
-                  </h4>
-                  <div className="space-y-3">
-                    {column.links.map((link) => (
-                      <a
-                        key={link}
-                        href="#"
-                        className="block text-sm text-[#8aab97] transition hover:text-white"
-                      >
-                        {link}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-[#c9a84c]/20 pt-7 text-center text-[13px] text-white/30 md:flex-row">
-            <span>Copyright 2025 Credence Credit Lab. All rights reserved.</span>
-            <span>Built for credit repair operators who are serious about scale.</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
