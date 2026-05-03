@@ -758,6 +758,28 @@ export default function CredenceLanding() {
         </div>
       </section>
 
+            <section className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-gradient-to-br from-[#1a3a28] to-[#2d5c3e] px-6 py-24 text-center md:px-10 xl:px-16">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_50%_50%,rgba(201,168,76,0.1)_0%,transparent_70%)]" />
+        <div className="relative mx-auto max-w-4xl">
+          <h2 className="font-['Playfair_Display'] text-5xl font-black leading-tight tracking-[-0.04em] md:text-6xl">
+            Your Competitors Are
+            <br />
+            <span className="text-[#c9a84c]">Scaling While You're Stuck.</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/65">
+            Don't let operations hold your growth hostage. Let's build your back office and your
+            revenue.
+          </p>
+          <div className="mt-10">
+            <PrimaryButton href={CALENDLY_URL} centered>Book My Strategy Call</PrimaryButton>
+          </div>
+          <p className="mt-5 text-sm text-[#8aab97]">
+            Limited slots available. No pressure, just strategy.
+          </p>
+        </div>
+      </section>
+
+
       <section
         id="why-us"
         className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-[#1a3a28] px-6 py-20 md:px-10 xl:px-16 xl:py-24"
@@ -918,27 +940,6 @@ export default function CredenceLanding() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-gradient-to-br from-[#1a3a28] to-[#2d5c3e] px-6 py-24 text-center md:px-10 xl:px-16">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_50%_50%,rgba(201,168,76,0.1)_0%,transparent_70%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <h2 className="font-['Playfair_Display'] text-5xl font-black leading-tight tracking-[-0.04em] md:text-6xl">
-            Your Competitors Are
-            <br />
-            <span className="text-[#c9a84c]">Scaling While You're Stuck.</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/65">
-            Don't let operations hold your growth hostage. Let's build your back office and your
-            revenue.
-          </p>
-          <div className="mt-10">
-            <PrimaryButton href={CALENDLY_URL} centered>Book My Strategy Call</PrimaryButton>
-          </div>
-          <p className="mt-5 text-sm text-[#8aab97]">
-            Limited slots available. No pressure, just strategy.
-          </p>
-        </div>
-      </section>
-
       <section
         id="apply"
         className="border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-20 md:px-10 xl:px-16 xl:py-24"
@@ -1014,6 +1015,27 @@ export default function CredenceLanding() {
           </div>
         </div>
       </section>
+
+      {/* <section className="relative overflow-hidden border-t border-[#c9a84c]/20 bg-gradient-to-br from-[#1a3a28] to-[#2d5c3e] px-6 py-24 text-center md:px-10 xl:px-16">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_50%_50%,rgba(201,168,76,0.1)_0%,transparent_70%)]" />
+        <div className="relative mx-auto max-w-4xl">
+          <h2 className="font-['Playfair_Display'] text-5xl font-black leading-tight tracking-[-0.04em] md:text-6xl">
+            Your Competitors Are
+            <br />
+            <span className="text-[#c9a84c]">Scaling While You're Stuck.</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/65">
+            Don't let operations hold your growth hostage. Let's build your back office and your
+            revenue.
+          </p>
+          <div className="mt-10">
+            <PrimaryButton href={CALENDLY_URL} centered>Book My Strategy Call</PrimaryButton>
+          </div>
+          <p className="mt-5 text-sm text-[#8aab97]">
+            Limited slots available. No pressure, just strategy.
+          </p>
+        </div>
+      </section> */}
 
       <footer className="border-t border-[#c9a84c]/20 bg-[#0f2419] px-6 py-16 md:px-10 xl:px-16">
         <div className="mx-auto max-w-7xl">
